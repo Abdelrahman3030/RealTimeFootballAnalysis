@@ -1,0 +1,8 @@
+streamlit
+numpy
+ultralytics
+Pillow
+moviepy
+gdown
+os
+tempfile
