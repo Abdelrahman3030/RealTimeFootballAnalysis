@@ -32,24 +32,48 @@ st.set_page_config(
 st.markdown("""
     <style>
         .main {
-            background-color: #F0F2F6;
+            background-color: #2E2E2E;  /* Darker background for better contrast */
         }
-        h1 {
-            color: #FF6347;
+        h1, h2, h3, h4, h5, h6 {
+            color: #FF6347;  /* Tomato color for headings */
         }
         .stButton button {
             background-color: #FF6347;
             color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
         }
-        .css-1v3fvcr {
-            color: #FF6347;  /* Change color of titles */
+        .stFileUploader {
+            background-color: #FF6347;
+            border: none;
+            color: white;
+            border-radius: 5px;
         }
-        .css-145kmo2 { 
-            background-color: #fff;  /* Light grey for the background */
-            color: #000; /* Darker text for better contrast */
+        .stFileUploader > div {
+            text-align: center;
+        }
+        .uploadedVideoText {
+            font-size: 1.2rem;
+            color: #FF6347;
+            text-align: center;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #2E2E2E;
+            text-align: center;
+            padding: 10px;
+        }
+        .footer a {
+            color: #FF6347;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 # App Title
 st.title("⚽ Real-Time Sports Analytics with YOLOv5")
