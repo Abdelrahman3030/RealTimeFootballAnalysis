@@ -5,22 +5,6 @@ import tempfile
 import os
 from ultralytics import YOLO  # YOLO import
 from moviepy.editor import VideoFileClip
-import gdown
-import os
-
-# Google Drive file ID (after uploading the file, get the file ID from the shareable link)
-# Example: https://drive.google.com/file/d/1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E/view?usp=sharing
-file_id = "1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E"
-download_url = f"https://drive.google.com/file/d/1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E/view?usp=sharing"
-output = "yolov5xu.pt"
-
-# Check if the file already exists to avoid redownloading
-if not os.path.exists(output):
-    print("Downloading model...")
-    gdown.download(download_url, output, quiet=False)
-else:
-    print("Model already downloaded.")
-
 
 # Load YOLOv5 model (using your custom-trained model)
 model = YOLO('yolov5xu.pt')  # Load your custom YOLOv5 model (yolov5xu.pt or yolov5/best.pt)
@@ -71,12 +55,16 @@ if uploaded_video is not None:
         # YOLOv5 inference on each frame
         results = model(frame)  # Process the frame through YOLOv5
 
-        # If results are a list, process each result individually
-        for result in results:
-            result_frame = np.squeeze(result.plot())  # Use `.plot()` to draw bounding boxes
+        # If results is a list, render each result individually
+        if isinstance(results, list):
+            for result in results:
+                result_frame = np.squeeze(result.render())  # Draw bounding boxes on the frame
+        else:
+            # If not a list, handle it directly
+            result_frame = np.squeeze(results.render())  # Draw bounding boxes on the frame
 
-            # Display the processed frame in Streamlit (MoviePy uses RGB by default)
-            stframe.image(result_frame, channels="RGB", use_column_width=True)
+        # Display the processed frame in Streamlit (MoviePy uses RGB by default)
+        stframe.image(result_frame, channels="RGB", use_column_width=True)
 
     st.write("### Video processing complete.")
 else:

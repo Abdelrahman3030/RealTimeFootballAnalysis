@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # YOLOv5 requirements
 # Usage: pip install -r requirements.txt
 
@@ -47,3 +48,13 @@ setuptools>=70.0.0 # Snyk vulnerability fix
 # mss  # screenshots
 # albumentations>=1.0.3
 # pycocotools>=2.0.6  # COCO mAP
+=======
+streamlit
+numpy
+ultralytics
+Pillow
+moviepy
+gdown
+os
+tempfile
+>>>>>>> 096454c773ee7f8a53793329e845a81a87364c94

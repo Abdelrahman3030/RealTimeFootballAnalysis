@@ -950,7 +950,21 @@ def resample_segments(segments, n=1000):
         segments[i] = np.concatenate([np.interp(x, xp, s[:, i]) for i in range(2)]).reshape(2, -1).T  # segment xy
     return segments
 
-
+def scale_coords(img1_shape, coords, img0_shape, ratio_pad=None):
+    # Rescale coords (x1, y1, x2, y2) from img1_shape to img0_shape
+    if ratio_pad is None:  # calculate from image shapes
+        gain = min(img1_shape[0] / img0_shape[0], img1_shape[1] / img0_shape[1])  # gain (wh / wh)
+        pad = (img1_shape[1] - img0_shape[1] * gain) / 2, (img1_shape[0] - img0_shape[0] * gain) / 2  # wh padding
+    else:
+        gain = ratio_pad[0]
+        pad = ratio_pad[1]
+    
+    coords[:, [0, 2]] -= pad[0]  # x padding
+    coords[:, [1, 3]] -= pad[1]  # y padding
+    coords[:, :4] /= gain
+    coords[:, :4] =coords[:,4].clamp(min=0)
+    return coords    
+    
 def scale_boxes(img1_shape, boxes, img0_shape, ratio_pad=None):
     """Rescales (xyxy) bounding boxes from img1_shape to img0_shape, optionally using provided `ratio_pad`."""
     if ratio_pad is None:  # calculate from img0_shape
