@@ -2,7 +2,7 @@
 gitpython>=3.1.30
 matplotlib>=3.3
 numpy>=1.23.5
-opencv-python-headless
+opencv-python-headless==4.5.5.62
 pillow>=10.3.0
 psutil
 PyYAML>=5.3.1
