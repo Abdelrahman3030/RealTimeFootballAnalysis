@@ -5,7 +5,19 @@ import tempfile
 import os
 from ultralytics import YOLO  # YOLO import
 from moviepy.editor import VideoFileClip
+import gdown
 
+
+download_url = "https://drive.google.com/file/d/1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E/view?usp=sharing"
+output = "yolov5xu.pt"
+
+# Check if the file already exists to avoid redownloading
+if not os.path.exists(output):
+    print("Downloading model yolov5xu.pt from Google Drive...")
+    gdown.download(download_url, output, quiet=False)
+else:
+    print("Model already downloaded.")
+    
 # Load YOLOv5 model (using your custom-trained model)
 model = YOLO('yolov5xu.pt')  # Load your custom YOLOv5 model (yolov5xu.pt or yolov5/best.pt)
 
