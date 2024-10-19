@@ -5,6 +5,22 @@ import tempfile
 import os
 from ultralytics import YOLO  # YOLO import
 from moviepy.editor import VideoFileClip
+import gdown
+import os
+
+# Google Drive file ID (after uploading the file, get the file ID from the shareable link)
+# Example: https://drive.google.com/file/d/1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E/view?usp=sharing
+file_id = "1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E"
+download_url = f"https://drive.google.com/file/d/1ehr7HiYSVPBQOx1JZx5aWTLynRC4Fa4E/view?usp=sharing"
+output = "yolov5xu.pt"
+
+# Check if the file already exists to avoid redownloading
+if not os.path.exists(output):
+    print("Downloading model...")
+    gdown.download(download_url, output, quiet=False)
+else:
+    print("Model already downloaded.")
+
 
 # Load YOLOv5 model (using your custom-trained model)
 model = YOLO('yolov5xu.pt')  # Load your custom YOLOv5 model (yolov5xu.pt or yolov5/best.pt)
