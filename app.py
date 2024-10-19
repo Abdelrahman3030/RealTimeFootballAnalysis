@@ -31,42 +31,45 @@ st.set_page_config(
 # Custom styling for the Streamlit app
 st.markdown("""
     <style>
-        /* General Background and Text */
-        body {
-            background-color: #1a1a1a;  /* Dark background */
-        }
         .main {
-            background-color: #1a1a1a;  /* Matching the body background */
+            background-color: #2E2E2E;  /* Darker background for better contrast */
         }
         h1, h2, h3, h4, h5, h6 {
-            color: #FF6347; /* Title in a professional orange color */
-            font-weight: bold;
-        }
-        p {
-            color: #ffffff;
+            color: #FF6347;  /* Tomato color for headings */
         }
         .stButton button {
-            background-color: #FF6347; /* Button color */
+            background-color: #FF6347;
             color: white;
-            border-radius: 8px;
-            padding: 0.6em 1.5em;
+            border-radius: 5px;
             border: none;
-            font-weight: bold;
+            padding: 10px;
         }
-        /* Video Uploader styling */
-        .stFileUploader label {
-            color: #f0f0f0;
+        .stFileUploader {
+            background-color: #FF6347;
+            border: none;
+            color: white;
+            border-radius: 5px;
         }
-        .stFileUploader div {
-            background-color: #2d2d2d;
-        }
-        /* Footer Styling */
-        footer {
-            background-color: #2d2d2d;
-            color: #f0f0f0;
-            padding: 20px;
-            border-top: 1px solid #f0f0f0;
+        .stFileUploader > div {
             text-align: center;
+        }
+        .uploadedVideoText {
+            font-size: 1.2rem;
+            color: #FF6347;
+            text-align: center;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #2E2E2E;
+            text-align: center;
+            padding: 10px;
+        }
+        .footer a {
+            color: #FF6347;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -107,8 +110,7 @@ else:
     st.write("Upload a video to start processing.")
 
 # Footer for the app
-st.markdown("""
-    <footer>
-        Developed using <a href='https://streamlit.io/' target='_blank' style='color:#FF6347;'>Streamlit</a>, YOLOv5, and MoviePy.
-    </footer>
-""", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+st.write("""
+    *Developed using [Streamlit](https://www.streamlit.io/), YOLOv5, and MoviePy.*
+""")
