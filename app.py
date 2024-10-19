@@ -41,6 +41,13 @@ st.markdown("""
             background-color: #FF6347;
             color: white;
         }
+        .css-1v3fvcr {
+            color: #FF6347;  /* Change color of titles */
+        }
+        .css-145kmo2 { 
+            background-color: #fff;  /* Light grey for the background */
+            color: #000; /* Darker text for better contrast */
+        }
     </style>
 """, unsafe_allow_html=True)
 
